@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+
+# Virtual environments
+.venv/
+.env
+
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Build / cache / logs
+logs/
+faiss_cache/
+*.log
+
+# Large data
+*.pdf
+*.xlsx
+*.csv
