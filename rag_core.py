@@ -328,7 +328,7 @@ def get_openai_model() -> Tuple[Optional[ChatOpenAI], Optional[str]]:
 
 
 def get_ollama_model() -> Tuple[Optional[ChatOllama], Optional[str]]:
-    for name in ["llama3.1", "gemma"]:
+    for name in ["llama3.1:latest", "gemma:latest"]:
         try:
             model = ChatOllama(model=name, temperature=0.4, validate_model_on_init=True)
             _ = model.invoke("Hi")
@@ -565,10 +565,10 @@ def _get_adaptive_threshold() -> float:
     to the document's score distribution.
     """
     if len(_session_best_scores) < 15:
-        return 0.3
+        return -1.0
     sorted_s = sorted(_session_best_scores)
     p20_idx  = max(0, int(len(sorted_s) * 0.20) - 1)
-    return max(0.05, min(sorted_s[p20_idx], 0.4))
+    return max(-2.0, min(sorted_s[p20_idx], 1.0))
 
 
 # ── Improvement 8 — Faithfulness check ──────────────────────────────────────
